@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+   xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+        http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+   <persistence-unit name="primary">
+      <!-- If you are running in a production environment, add a managed 
+         data source, the example data source is just for proofs of concept! -->
+      <jta-data-source>java:/MySqlDSfoto</jta-data-source>
+       <class>org.wl.fotolab.model.entity.AparatyEntity</class>
+       <class>org.wl.fotolab.model.entity.ChemikaliaEntity</class>
+       <class>org.wl.fotolab.model.entity.FilmyEntity</class>
+       <class>org.wl.fotolab.model.entity.HistoriaEntity</class>
+       <class>org.wl.fotolab.model.entity.ObiektywyEntity</class>
+       <class>org.wl.fotolab.model.entity.ProducentEntity</class>
+       <class>org.wl.fotolab.model.entity.WynikiEntity</class>
+       <class>org.wl.fotolab.model.entity.WywolaniaEntity</class>
+       <class>org.wl.fotolab.model.entity.ZdarzenieEntity</class>
+       <properties>
+         <!-- Properties for Hibernate -->
+         <property name="hibernate.hbm2ddl.auto" value="validate" />
+         <property name="hibernate.show_sql" value="true" />
+           <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+           <property name="hibernate.id.new_generator_mappings" value="false"/>
+           <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/foto"/>
+           <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+           <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/foto"/>
+           <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+           <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/foto"/>
+           <property name="openjpa.ConnectionDriverName" value="com.mysql.cj.jdbc.Driver"/>
+           <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/foto"/>
+           <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+       </properties>
+   </persistence-unit>
+</persistence>

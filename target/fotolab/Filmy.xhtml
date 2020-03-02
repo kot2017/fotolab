@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/mytemplate.xhtml">
+    <ui:define name="content">
+        <h1 style="color: darkgrey">Filmy</h1>
+
+
+        <h:form id="reg">
+            <h2>Rejestracja filmu</h2>
+            <p>===================================.</p>
+            <table>
+                <tr>
+                    <th style="text-align: right;"><h:outputLabel
+                            for="name" value="Nazwa:" /></th>
+                    <td><h:inputText id="name" cols="50" value="#{film.nazwa}" />
+                        <h:message for="name" errorClass="invalid" /></td>
+                </tr>
+                <tr>
+                    <th style="text-align: right;"><h:outputLabel
+                            for="typ" value="Typ:" /></th>
+                    <td>
+                        <h:selectOneMenu id="typ" value="#{filmRegistration.typ}" >
+                            <f:selectItem itemLabel="35 mm cz-b" itemValue="35 mm cz-b" />
+                            <f:selectItem itemLabel="35 mm kolor negatyw" itemValue="35 mm kolor negatyw" />
+                            <f:selectItem itemLabel="35 mm kolor negatyw filmowy REMJET" itemValue="35 mm kolor negatyw filmowy REMJET" />
+                            <f:selectItem itemLabel="35 mm kolor pozytyw" itemValue="35 mm kolor pozytyw" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align: right;"><h:outputLabel for="asa" value="ASA" />  </th>
+                    <td>
+                        <h:selectOneMenu id="asa" value="#{filmRegistration.asa}" >
+                            <f:selectItem itemLabel="50 ASA" itemValue="50" />
+                            <f:selectItem itemLabel="100 ASA" itemValue="100" />
+                            <f:selectItem itemLabel="200 ASA" itemValue="200" />
+                            <f:selectItem itemLabel="400 ASA" itemValue="400" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th style="text-align: right;"><h:outputLabel
+                            for="exp" value="Data ważności:" /></th>
+                    <td><h:inputText id="exp" cols="50" value="#{film.expDate}" />
+                        <h:message for="exp" errorClass="invalid" /></td>
+                </tr>
+<!--                seria  -->
+                <tr>
+                    <th style="text-align: right;"><h:outputLabel
+                            for="seria" value="Seria:" /></th>
+                    <td><h:inputText id="seria" cols="50" value="#{film.seria}" />
+                        <h:message for="seria" errorClass="invalid" /></td>
+                </tr>
+
+
+<!--                producent -->
+
+                <tr>
+                    <th style="text-align: right;"><h:outputLabel
+                            for="film-producenci" value="Producenci :" /></th>
+               <td>
+                <p:selectOneMenu id="film-producenci" value="#{filmRegistration.selectedOption}"  >
+                    <f:selectItems value="#{dataProducer.producenci}" var="pe" itemLabel="#{pe.nazwa}" itemValue="#{pe.id}" />
+
+<!--                    <p:column>-->
+<!--                        <h:graphicImage name="showcase/images/themeswitcher/themeswitcher-#{t.name}.png" alt="#{t.name}" styleClass="ui-theme" />-->
+<!--                    </p:column>-->
+
+<!--                    <p:column>-->
+<!--                        <h:outputText value="#{producentEntity.nazwa}" />-->
+<!--                    </p:column>-->
+                </p:selectOneMenu>
+               </td>
+            </tr>
+
+<!--                <tr>-->
+<!--                    <th style="text-align: center;">-->
+<!--                        <h:outputLabel for="producent" />-->
+<!--                    </th>-->
+<!--                    <td>-->
+<!--                        <h:selectOneListbox id="producent" value="#{producenci}"-->
+<!--                    </td>-->
+<!--                </tr>-->
+
+
+            </table>
+
+<!--            przycisk zapisu  -->
+            <p>
+                <h:commandButton id="register"
+                                 action="#{filmRegistration.register}" value="Zapisz" />
+
+            </p>
+        </h:form>
+
+        <p:dataTable var="_filmy" value="#{dataProducer.filmy}"
+                     rendered="#{not empty dataProducer.filmy}" resizableColumns="true" resizeMode="expand" >
+        <p:column>
+            <f:facet name="header"   >Id</f:facet>
+            #{_filmy.id}
+        </p:column>
+            <p:column>
+                <f:facet name="header"   >nazwa</f:facet>
+                #{_filmy.nazwa}
+            </p:column>
+            <p:column>
+                <f:facet name="header"   >typ</f:facet>
+                #{_filmy.typ}
+            </p:column>
+            <p:column>
+                <f:facet name="header"   >ASA</f:facet>
+                #{_filmy.nominalAsa}
+            </p:column>
+            <p:column>
+                <f:facet name="header"   >data ważności</f:facet>
+                #{_filmy.expDate}
+            </p:column>
+            <p:column>
+                <f:facet name="header"   >seria</f:facet>
+                #{_filmy.seria}
+            </p:column>
+            <p:column>
+                <f:facet name="header"   >producent</f:facet>
+                #{_filmy.producentByProducent.nazwa}
+            </p:column>
+
+        </p:dataTable>
+
+
+    </ui:define>
+
+</ui:composition>

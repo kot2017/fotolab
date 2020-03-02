@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/mytemplate.xhtml">
+    <ui:define name="content">
+        <h1 style="color: darkgrey">Producenci</h1>
+
+        <p>Producenci filmów i chemii</p>
+
+        <h:form id="reg">
+            <h2>Rejestracja producenta</h2>
+            <p>Enforces annotation-based constraints defined on the
+                model class.</p>
+            <table>
+                <tr>
+                    <th style="text-align: right;"><h:outputLabel
+                            for="name" value="Nazwa:" /></th>
+                    <td><h:inputText id="name" cols="50" value="#{producentRegistration.producent.nazwa}" />
+                        <h:message for="name" errorClass="invalid" /></td>
+                </tr>
+                <tr>
+                    <th style="text-align: right;"><h:outputLabel
+                            for="opis" value="Opis:" /></th>
+                    <td><h:inputTextarea id="opis"  rows="4" cols="50"
+                                     value="#{producentRegistration.producent.opis}" /> <h:message
+                            for="opis" errorClass="invalid" /></td>
+                </tr>
+                <tr>
+                    <th style="text-align: right;"><h:outputLabel
+                            for="link" value="Link:" /></th>
+                    <td><h:inputText id="link" cols="50"
+                                     value="#{producentRegistration.producent.link}" /> <h:message
+                            for="link" errorClass="invalid" /></td>
+                </tr>
+            </table>
+            <p>
+                <h:commandButton id="register"
+                                 action="#{producentRegistration.register}" value="Zapisz" />
+                <h:outputText value=" Registered!"
+                              rendered="#{facesContext.postback and empty facesContext.messageList}"
+                              style="color: green;" />
+            </p>
+        </h:form>
+
+        <p:dataTable var="_producenci" value="#{dataProducer.producenci}"
+                     rendered="#{not empty dataProducer.producenci}" resizableColumns="true" resizeMode="expand" >
+            <p:column>
+                <f:facet name="header"   >Id</f:facet>
+                #{_producenci.id}
+            </p:column>
+            <p:column>
+                <f:facet name="header"   >Nazwa</f:facet>
+                #{_producenci.nazwa}
+            </p:column>
+            <p:column>
+                <f:facet name="header"  >Opis</f:facet>
+                #{_producenci.opis}
+            </p:column>
+            <p:column>
+                <f:facet name="header"  >Link</f:facet>
+                #{_producenci.link}
+            </p:column>
+<!--            <h:column>-->
+<!--                <f:facet name="header">REST URL</f:facet>-->
+<!--                <a href="#{request.contextPath}/rest/members/#{_member.id}">/rest/members/#{_member.id}</a>-->
+<!--            </h:column>-->
+<!--            <f:facet name="footer">-->
+<!--                REST URL for all members: <a-->
+<!--                    href="#{request.contextPath}/rest/members">/rest/members</a>-->
+<!--            </f:facet>-->
+        </p:dataTable>
+
+    </ui:define>
+</ui:composition>
