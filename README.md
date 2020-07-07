@@ -5,7 +5,16 @@ W załozeniu projekt ma dostarczyć informacji o  możliwósci wykonania aplikac
 
 ## technologie
 Technologie użyte w projekcie:
-Java EE6, serwer Jboss (Wildfly 17), Hibernate, JSF, (Primefaces)
+Java EE6, serwer Jboss (Wildfly 17), Hibernate, MySQL, JSF, (Primefaces)
+
+### pliki dodatkowe
+w katalogu .settings znajduje sie pik stanf=dalone.xml który zawiera przykładową konfiguracje serwera jboss wraz s połaczeniem do bazy danych
+
+w katalogu .settings/sql-data znajdują się skrypty do tworzenia bazy danych
+
+
+## szkic architektury
+
 
 
 ## interfejs użytkownika
