@@ -15,7 +15,7 @@ w katalogu .settings/sql-data znajdują się skrypty do tworzenia bazy danych
 
 ## szkic architektury
 
-
+![](rys3.jpg)
 
 ## interfejs użytkownika
 ![](rys1.jpg)
