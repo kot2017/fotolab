@@ -5,6 +5,7 @@ import org.wl.fotolab.data.DataProducer;
 import org.wl.fotolab.model.entity.ProducentEntity;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -17,9 +18,8 @@ import javax.ws.rs.Path;
 @Path("/producenci")
 @RequestScoped
 public class ProducenciResourceRESTService {
-
-//    @Inject
-//    ProducenciListProducer producenciListProducer;
+    @Inject
+    private Logger log;
 
     @Inject
     DataProducer dataProducer;
@@ -27,23 +27,13 @@ public class ProducenciResourceRESTService {
     @Inject
     private EntityManager em;
 
-//    // The Java method will process HTTP GET requests
-//    @GET
-//    // The Java method will produce content identified by the MIME Media type "text/plain"
-//    @Produces("text/plain")
-//    public String getClichedMessage() {
-//        // Return some cliched textual content
-//        return "producenci ";
-//    }
-
-
 
     @GET
-@Produces("text/json")
+    @Produces("text/json")
     public String getAllProducent(){
-        System.out.println("===  getAllProducent ===");
+        log.info("===  getAllProducent ===");
 
-        List<ProducentEntity> list = dataProducer.getProducenci();// producenciListProducer.retrieveAllProducent();
+        List<ProducentEntity> list = dataProducer.getProducenci();
 
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = "";
